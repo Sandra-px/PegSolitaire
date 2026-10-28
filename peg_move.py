@@ -37,7 +37,7 @@ def midpoint(start, end):
     row_diff = end.row - start.row
     col_diff = end.col - start.col
  
-    # Must move exactly 2 in a straight line: horizontal, vertical, or diagonal.
+    #Must move exactly 2 in a straight line: horizontal, vertical, or diagonal.
     if abs(row_diff) == 2 and col_diff == 0:
         return Position(start.row + row_diff // 2, start.col)
     if abs(col_diff) == 2 and row_diff == 0:
@@ -51,13 +51,13 @@ def is_valid_move(board, start, end):
     """Given a board (dict mapping Position -> bool, True = peg present),
     return True if jumping from start to end is a legal Solitaire move."""
     if board.get(start) is not True:
-        return False  # no peg at the start
+        return False  #no peg at the start
     if board.get(end) is not False:
         return False  # destination must be an existing, empty hole
  
     mid = midpoint(start, end)
     if mid is None:
-        return False  # not exactly two squares away in a straight line
+        return False  
  
-    return board.get(mid) is True  # must be jumping over a peg
+    return board.get(mid) is True  #must be jumping over a peg
  

@@ -31,7 +31,21 @@ class TestMidpoint(unittest.TestCase):
         start = Position(0, 0)
         end = Position(0, 1)  # only one square away not a valid jump distance
         self.assertIsNone(midpoint(start, end))
- 
+
+"""Addtion for sprint 2"""
+class TestPegMove(unittest.TestCase):
+    def setUp(self):
+        self.board = {Position(3,1): True, Position(3,2): True, Position(3,3): False}
+    def test_horizontal_midpoint(self):
+        self.assertEqual(Position(3,2), midpoint(Position(3,1), Position(3,3)))
+    def test_valid_jump(self):
+        self.assertTrue(is_valid_move(self.board, Position(3,1), Position(3,3)))
+    def test_missing_jumped_peg_rejected(self):
+        self.board[Position(3,2)] = False
+        self.assertFalse(is_valid_move(self.board, Position(3,1), Position(3,3)))
+    def test_diagonal_midpoint(self):
+        self.assertEqual(Position(2,2), midpoint(Position(1,1), Position(3,3)))
+
 
 if __name__ == "__main__":
     unittest.main()
